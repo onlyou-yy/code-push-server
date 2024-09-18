@@ -29,6 +29,7 @@
     "npm": ">= 3.10.8"
   },
   "scripts": {
+    "mysql": "node ./bin/mysql",
     "dev": "supervisor ./bin/www",
     "start": "node ./bin/www",
     "init": "node ./bin/db init",
