@@ -1,7 +1,7 @@
 var os = require("os");
 var path = require("path");
 
-const host = "172.16.16.53";
+const host = "172.16.16.42";
 
 var config = {};
 config.development = {
@@ -56,6 +56,15 @@ config.development = {
     bucketName: "",
     region: "",
     downloadUrl: "", // binary files download host address.
+  },
+  // 华为云 obs
+  huaweiObs: {
+    accessKeyId: "D2NBCBTDQFX5IX7DDXUK",
+    secretAccessKey: "lFkviO7luy7s9X6H5pjmyouWdnunPnGo0j0808vA",
+    endpoint: "https://obs.cn-east-3.myhuaweicloud.com",
+    bucketName: "apps",
+    region: "cn-east-3",
+    downloadUrl: "https://apps.obs.cn-east-3.myhuaweicloud.com", // binary files download host address.
   },
   // Config for local storage when storageType value is "local".
   local: {
