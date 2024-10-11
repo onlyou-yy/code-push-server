@@ -1,17 +1,24 @@
 var os = require("os");
 var path = require("path");
 
-const host = "172.16.16.42";
+const host = "0.0.0.0";
+
+/**
+ * gcb 测试数据库
+ * host&port：110.41.188.129:3998
+ * username：itgcb
+ * password：@%2018GcbIt
+ */
 
 var config = {};
 config.development = {
   // Config for database, only support mysql.
   db: {
-    username: process.env.RDS_USERNAME || "root",
-    password: process.env.RDS_PASSWORD || "1234",
+    username: process.env.RDS_USERNAME || "itgcb",
+    password: process.env.RDS_PASSWORD || "@%2018GcbIt",
     database: process.env.DATA_BASE || "codepush",
-    host: process.env.RDS_HOST || "127.0.0.1",
-    port: process.env.RDS_PORT || 3306,
+    host: process.env.RDS_HOST || "110.41.188.129",
+    port: process.env.RDS_PORT || 3998,
     dialect: "mysql",
     logging: false,
     operatorsAliases: false,
@@ -58,14 +65,25 @@ config.development = {
     downloadUrl: "", // binary files download host address.
   },
   // 华为云 obs
+  // gcb
   huaweiObs: {
-    accessKeyId: "D2NBCBTDQFX5IX7DDXUK",
-    secretAccessKey: "lFkviO7luy7s9X6H5pjmyouWdnunPnGo0j0808vA",
-    endpoint: "https://obs.cn-east-3.myhuaweicloud.com",
-    bucketName: "apps",
+    accessKeyId: "NCBWQAO8SYDPEIWZJJHB",
+    secretAccessKey: "CUCrMgUM15QfxnGYEXdP8YIMfOKVGkVM6YLdYWof",
+    endpoint: "obs.cn-south-1.myhuaweicloud.com",
+    bucketName: "itgcb-online",
     region: "cn-east-3",
-    downloadUrl: "https://apps.obs.cn-east-3.myhuaweicloud.com", // binary files download host address.
+    prefix: "apps",
+    downloadUrl: "https://itgcb-online.obs.cn-south-1.myhuaweicloud.com/apps",
   },
+  // self
+  // huaweiObs: {
+  //   accessKeyId: "D2NBCBTDQFX5IX7DDXUK",
+  //   secretAccessKey: "lFkviO7luy7s9X6H5pjmyouWdnunPnGo0j0808vA",
+  //   endpoint: "https://obs.cn-east-3.myhuaweicloud.com",
+  //   bucketName: "apps",
+  //   region: "cn-east-3",
+  //   downloadUrl: "https://apps.obs.cn-east-3.myhuaweicloud.com", // binary files download host address.
+  // },
   // Config for local storage when storageType value is "local".
   local: {
     // Binary files storage dir, Do not use tmpdir and it's public download dir.

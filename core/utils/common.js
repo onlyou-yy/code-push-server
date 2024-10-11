@@ -538,9 +538,10 @@ common.uploadFileToHuaweiObs = function (key, filePath) {
       secret_access_key: _.get(config, "huaweiObs.secretAccessKey"),
       server: _.get(config, "huaweiObs.endpoint"),
     });
+    const keyName = `${_.get(config, "huaweiObs.prefix")}/${key}`;
     const params = {
       Bucket: _.get(config, "huaweiObs.bucketName"),
-      Key: key,
+      Key: keyName,
       SourceFile: filePath,
     };
     obsClient.putObject(params, (err, result) => {
@@ -549,7 +550,7 @@ common.uploadFileToHuaweiObs = function (key, filePath) {
         reject(err);
       } else {
         console.log("Status-->" + result.CommonMsg.Status);
-        resolve(key);
+        resolve(keyName);
       }
     });
     // obsClient.close();

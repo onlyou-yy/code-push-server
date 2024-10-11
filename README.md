@@ -92,6 +92,12 @@ $ code-push login http://api.code-push.com #登录
 
 MIT License [read](https://github.com/lisong/code-push-server/blob/master/LICENSE)
 
+如果还没有创建数据库,可以运行命令创建数据库
+
+```shell
+./bin/db init --dbhost "110.41.188.129" --dbport "3998"  --dbuser "itgcb" --dbpassword "@%2018GcbIt"
+```
+
 如果显示邮箱则已登录，否则，使用如下命令进行登录 ：
 
 ```shell
