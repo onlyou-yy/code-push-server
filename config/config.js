@@ -1,8 +1,8 @@
 var os = require("os");
 var path = require("path");
 
-const host = "0.0.0.0";
-
+const host =
+  process.env.NODE_ENV === "development" ? "172.16.16.42" : "0.0.0.0";
 /**
  * gcb 测试数据库
  * host&port：110.41.188.129:3998
@@ -10,18 +10,27 @@ const host = "0.0.0.0";
  * password：@%2018GcbIt
  */
 
+const dbConfig = {
+  username: process.env.NODE_ENV === "development" ? "root" : "itgcb",
+  password: process.env.NODE_ENV === "development" ? "1234" : "@%2018GcbIt",
+  database: process.env.NODE_ENV === "development" ? "codepush" : "codepush",
+  host: process.env.NODE_ENV === "development" ? "localhost" : "110.41.188.129",
+  port: process.env.NODE_ENV === "development" ? 3306 : 3998,
+};
+
 var config = {};
 config.development = {
   // Config for database, only support mysql.
   db: {
-    username: process.env.RDS_USERNAME || "itgcb",
-    password: process.env.RDS_PASSWORD || "@%2018GcbIt",
-    database: process.env.DATA_BASE || "codepush",
-    host: process.env.RDS_HOST || "110.41.188.129",
-    port: process.env.RDS_PORT || 3998,
+    username: process.env.RDS_USERNAME || dbConfig.username,
+    password: process.env.RDS_PASSWORD || dbConfig.password,
+    database: process.env.DATA_BASE || dbConfig.database,
+    host: process.env.RDS_HOST || dbConfig.host,
+    port: process.env.RDS_PORT || dbConfig.port,
     dialect: "mysql",
     logging: false,
     operatorsAliases: false,
+    timezone: "+08:00",
   },
   // Config for qiniu (http://www.qiniu.com/) cloud storage when storageType value is "qiniu".
   qiniu: {
